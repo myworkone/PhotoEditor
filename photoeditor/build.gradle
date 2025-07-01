@@ -19,8 +19,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -65,7 +65,9 @@ ext {
     PUBLISH_ARTIFACT_ID = 'photoeditor'
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
+if (!System.getenv("JITPACK")) {
+    apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
+}
 repositories {
     mavenCentral()
 }
